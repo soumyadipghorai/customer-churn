@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block link%} 
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/newPrediction.css')}}">
+{% endblock %}
+{% block body %}
+<div class="prediction-text">
+    <p> This customer will probably <b>{{prediction_value}}</b> churn</p>
+    <!-- <div class="motivation">
+        <p class="Quote">"{{quote}}" — {{author}}</p>
+    </div> -->
+</div>
+{% endblock %}
+<!-- {% block image %}
+    <div class="prediction-div">
+        <div class="prediction-item">
+            <img src="{{prediction_value[0]}}" alt="profile-image" class="predicted-profile-pic active fade-left">
+            <p class="name">{{prediction_value[1]}}</p>
+            <div class="category-prediction-div">
+                <p class="category button-class">{{prediction_value[2]}}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %} -->
+
+{% block coffee %}
+<a href="https://www.buymeacoffee.com/Ghorai" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee"></a> 
+{% endblock %}

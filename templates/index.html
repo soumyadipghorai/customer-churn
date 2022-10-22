@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form action="{{url_for('predict')}}" method="post">
+    <div class="row gx-sm-2 input-options">
+        <div class="col-6 input-section-container">
+            <input type="number" class="form-control" placeholder="Tenure" name="tenure" id="name">
+        </div>
+        <div class="col-6 input-section-container">
+            <input type="number" class="form-control" name ="MonthlyCharges" placeholder="Monthly Charges">
+        </div>
+    </div>
+    <div class="row gx-sm-2 input-options">
+        <div class="col-6 input-section-container">
+            <label for="PhoneService">PhoneService : </label>
+            <select class="form-control" name="PhoneService" id="" required>
+                {% for PhoneService in PhoneServiceList %}
+                    <option value="{{PhoneService}}">{{PhoneService}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-6 input-section-container">
+            <label for="OnlineSecurity">OnlineSecurity : </label>
+            <select class="form-control" name="OnlineSecurity" id="" required>
+                {% for OnlineSecurity in OnlineSecurityList %}
+                    <option value="{{OnlineSecurity}}">{{OnlineSecurity}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row gx-sm-2 input-options">
+        <div class="col-6 input-section-container">
+            <label for="PaperlessBilling">PaperlessBilling : </label>
+            <select class="form-control" name="PaperlessBilling" id="" required>
+                {% for PaperlessBilling in PaperlessBillingList %}
+                    <option value="{{PaperlessBilling}}">{{PaperlessBilling}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-6 input-section-container">
+            <label for="Contract">Contract : </label>
+            <select class="form-control" name="Contract" id="" required>
+                {% for Contract in ContractList %}
+                    <option value="{{Contract}}">{{Contract}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="button-div">
+        <button type="submit" class="button-class">PLAY</button>
+    </div>
+</form>
+{% endblock %}
+
+<!-- {% block image %}
+
+{% endblock %} -->
