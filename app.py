@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd 
 from rich.logging import RichHandler
-import sys, emoji, pickle, random, logging
+import pickle, logging
 from sklearn.preprocessing import LabelEncoder
 import xgboost
 from flask import Flask, render_template, request 
@@ -85,7 +85,7 @@ def predict() :
             churn = 'NOT'
 
         if prediction < 0 : 
-            return render_template('index.html', prediction_value = 'some random value')  
+            return render_template('index.html', prediction_value = 'som value')  
         
         else : 
             return render_template(
