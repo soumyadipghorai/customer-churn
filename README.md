@@ -1,7 +1,8 @@
 <h1 align='center'> Customer Churn Prediction </h1>
 <h2 align='center'> Predict if a customer will churn or not using Machine learning </h2>
 
-So I have been playing those fun `Facebook games` for a while where they say you'll get married in this year or you'll have this many kids or this much money bla bla. But noboady gives you the reason why? I think these are pretty random. So thought of building a fun game using `Machine Learning`, and provide some **Data Driven** results.
+
+In this repository, we have performed the end to end Exploratory Data Analysis, and idenfitied the characteristics of the customers that are more likely to churn, and I have used them wisely to create a model, and lately, have deployed the model using `flask` and `heroku`.
 
 <p align='center'> 
     <img src='images/Churn-Prediction_Trim.gif' alt = 'header_gif' style = "max-width:600px;">
@@ -11,9 +12,9 @@ So I have been playing those fun `Facebook games` for a while where they say you
 
 ## Approach : 
 
-* I have collected data of richest persons in 100+ different fields from more than 100 countries. I have used `BeautifulSoup` to scrape [therichest.com](https://www.therichest.com/top-lists/top-100-richest).
-* After collecting the data done some data cleaning and feature engineering on raw data. 
-* Fitted multiple regression model and used hyper parameter tuning to get the best result. 
+* Performed some data cleaning and feature engineering on raw data. 
+* Selected 6 best features to deploy. 
+* fitted multiple classification model and finally selected the stacked classification model.
 * Saved the model in a `.pkl` file and.
 * Later used the same model in the `flask app` and for frontend used `HTML, CSS` and `Bootstrap`.
 * Deployed the whole project on ``Heroku` and used `Google Analytics` for tracking users.
@@ -33,54 +34,56 @@ So I have been playing those fun `Facebook games` for a while where they say you
 Personal Finance 
 │
 |---- Data
-|   |-- preprocessed_df.csv
-|   |-- Rich.csv
+|   |-- ML_models
+|   |   |--
+|   |
+|   |-- preprocessed_data.csv
+|   |-- WA_Fn-UseC_-Telco-Customer-Churn.csv
 |
-|---- results
-|   |-- desktop_home.png
-|   |-- desktop_prediction.png
-|   |-- mobile_home.png
-|   |-- mobile_prediction.png
+|---- images
+|   |-- Churn-Prediction_Trim.gif
 |
-|---- scraper 
-|   |-- webscraper.py
+|---- notebooks 
+|   |-- models
+|   |   |-- analyseModel.py
+|   |   |-- hyperparameterTuning.py
+|   |   |-- *.ipynb
+|   |-- *.ipynb
 |
 |---- static 
 |   |-- images
-|   |
+|   |   |-- favicon
+|   |   |   |-- *.png
 |
 |   |-- styles
-|   |   |-- index.css
-|   |   |-- prediction.css
+|   |   |-- layout.css
 |   
 |---- templates
 |   |   |-- index.html
 |   |   |-- layout.html
 |   |   |-- prediction.html
 |
-|
+|---- .gitignore
 |---- app.py
 |---- LICENSE
-|---- model_training.ipynb
-|---- markdown.py
-|---- random_forest_regression_model.pkl
-|---- random_forest_regression_model.sav
+|---- Procfile
 |---- README.md
 |---- requirements.txt
+|---- runtime.txt
 
 ```
 ---------------------
 
 ## Technologies used : 
 
-* python library - numpy, pandas, seaborn, matplotlib, flask, plotly, sklearn, joblib, bs4
+* python library - numpy, pandas, seaborn, matplotlib, flask, plotly, sklearn, pickle, xgboost
 * version control - git 
 * backend - flask
 * concept - Machine Learning
 
 ## Tools and Services : 
 * IDE - Vs code 
-* Application Deployment - local host
+* Application Deployment - Heroku
 * Code Repository - GitHub
 
 -----------------------
