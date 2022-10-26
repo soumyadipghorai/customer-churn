@@ -4,10 +4,10 @@
 <form action="{{url_for('predict')}}" method="post">
     <div class="row gx-sm-2 input-options">
         <div class="col-6 input-section-container">
-            <input type="number" class="form-control" placeholder="Tenure" name="tenure" id="name">
+            <input type="number" class="form-control" placeholder="Tenure" name="tenure" id="name" required>
         </div>
         <div class="col-6 input-section-container">
-            <input type="number" class="form-control" name ="MonthlyCharges" placeholder="Monthly Charges">
+            <input type="number" class="form-control" name ="MonthlyCharges" placeholder="Monthly Charges" required>
         </div>
     </div>
     <div class="row gx-sm-2 input-options">
