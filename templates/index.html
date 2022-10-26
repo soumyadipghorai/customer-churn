@@ -4,18 +4,24 @@
 <form action="{{url_for('predict')}}" method="post">
     <div class="row gx-sm-2 input-options">
         <div class="col-6 input-section-container">
-            <input type="number" class="form-control" placeholder="Tenure" name="tenure" id="name" required>
+            <label for="Dependents">Dependents : </label>
+            <select class="form-control" name="Dependents" id="" required>
+                {% for Dependents in DependentsList %}
+                    <option value="{{Dependents}}">{{Dependents}}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="col-6 input-section-container">
+            <label for="MonthlyCharges">MonthlyCharges : </label>
             <input type="number" class="form-control" name ="MonthlyCharges" placeholder="Monthly Charges" required>
         </div>
     </div>
     <div class="row gx-sm-2 input-options">
         <div class="col-6 input-section-container">
-            <label for="PhoneService">PhoneService : </label>
-            <select class="form-control" name="PhoneService" id="" required>
-                {% for PhoneService in PhoneServiceList %}
-                    <option value="{{PhoneService}}">{{PhoneService}}</option>
+            <label for="StreamingTV">StreamingTV : </label>
+            <select class="form-control" name="StreamingTV" id="" required>
+                {% for StreamingTV in StreamingTVList %}
+                    <option value="{{StreamingTV}}">{{StreamingTV}}</option>
                 {% endfor %}
             </select>
         </div>
@@ -30,10 +36,10 @@
     </div>
     <div class="row gx-sm-2 input-options">
         <div class="col-6 input-section-container">
-            <label for="PaperlessBilling">PaperlessBilling : </label>
-            <select class="form-control" name="PaperlessBilling" id="" required>
-                {% for PaperlessBilling in PaperlessBillingList %}
-                    <option value="{{PaperlessBilling}}">{{PaperlessBilling}}</option>
+            <label for="InternetService">InternetService : </label>
+            <select class="form-control" name="InternetService" id="" required>
+                {% for InternetService in InternetServiceList %}
+                    <option value="{{InternetService}}">{{InternetService}}</option>
                 {% endfor %}
             </select>
         </div>

@@ -19,10 +19,11 @@ scaler = pickle.load(open('data/ML_models/StandardScaler.pkl', 'rb'))
 # 'tenure',
 #  'MonthlyCharges'
 
-PhoneServiceEncoder = pickle.load(open('data/ML_models/PhoneServiceEncoder.pkl', 'rb'))
+InternetServiceEncoder = pickle.load(open('data/ML_models/InternetServiceEncoder.pkl', 'rb'))
 OnlineSecurityEncoder = pickle.load(open('data/ML_models/OnlineSecurityEncoder.pkl', 'rb'))
 ContractEncoder = pickle.load(open('data/ML_models/ContractEncoder.pkl', 'rb'))
-PaperlessBillingEncoder = pickle.load(open('data/ML_models/PaperlessBillingEncoder.pkl', 'rb'))
+StreamingTVEncoder = pickle.load(open('data/ML_models/StreamingTVEncoder.pkl', 'rb'))
+DependentsEncoder = pickle.load(open('data/ML_models/DependentsEncoder.pkl', 'rb'))
 
 model = pickle.load(open('data/ML_models/stackedModel.pkl', 'rb'))
 
@@ -30,50 +31,54 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET'])
 def index() : 
-    value = 'Predict your true worth using'
-    PhoneService = list(df.PhoneService.unique())
+    Dependents = list(df.Dependents.unique())
+    InternetService = list(df.InternetService.unique())
     OnlineSecurity = list(df.OnlineSecurity.unique())
     Contract = list(df.Contract.unique())
-    PaperlessBilling = list(df.PaperlessBilling.unique())
+    StreamingTV = list(df.StreamingTV.unique())
 
-    PhoneService.sort()
+    Dependents.sort()
+    InternetService.sort()
     OnlineSecurity.sort()
     Contract.sort()
-    PaperlessBilling.sort()
+    StreamingTV.sort()
 
     return render_template(
         'index.html', 
-        PhoneServiceList = PhoneService, 
+        DependentsList = Dependents, 
+        InternetServiceList = InternetService, 
         OnlineSecurityList = OnlineSecurity, 
         ContractList = Contract, 
-        PaperlessBillingList = PaperlessBilling
+        StreamingTVList = StreamingTV
     )
 
 @app.route('/predict', methods = ['POST'])
 def predict() : 
 
     if request.method == 'POST' : 
-        tenure = float(request.form['tenure'])
-        PhoneService = request.form['PhoneService']
+        Dependents = request.form['Dependents']
+        InternetService = request.form['InternetService']
         OnlineSecurity = request.form['OnlineSecurity']
         Contract = request.form['Contract']
-        PaperlessBilling = request.form['PaperlessBilling']
+        StreamingTV = request.form['StreamingTV']
         MonthlyCharges = float(request.form['MonthlyCharges'])
 
       
-        PhoneServiceEncoded = PhoneServiceEncoder.transform([str(PhoneService)])[0]
+        DependentsEncoded = DependentsEncoder.transform([str(Dependents)])[0]
+        InternetServiceEncoded = InternetServiceEncoder.transform([str(InternetService)])[0]
         OnlineSecurityEncoded  = OnlineSecurityEncoder.transform([str(OnlineSecurity)])[0]
         ContractEncoded  = ContractEncoder.transform([str(Contract)])[0]
-        PaperlessBillingEncoded  = PaperlessBillingEncoder.transform([str(PaperlessBilling)])[0]
+        StreamingTVEncoded  = StreamingTVEncoder.transform([str(StreamingTV)])[0]
 
         logging.info('Encoding Done : ')
-        logging.debug('PhoneService -->'+ str(PhoneService)) 
+        logging.debug('Dependents -->'+ str(Dependents)) 
+        logging.debug('InternetService -->'+ str(InternetService)) 
         logging.debug('OnlineSecurity -->' + str(OnlineSecurity))
         logging.debug('Contract -->' + str(Contract))
-        logging.debug('PaperlessBilling -->' + str(PaperlessBilling))
+        logging.debug('StreamingTV -->' + str(StreamingTV))
 
         to_predict = scaler.transform([[
-            tenure, PhoneServiceEncoded, OnlineSecurityEncoded, ContractEncoded, PaperlessBillingEncoded, MonthlyCharges
+            DependentsEncoded, InternetServiceEncoded, OnlineSecurityEncoded, ContractEncoded, StreamingTVEncoded, MonthlyCharges
             ]])
 
         prediction = model.predict(to_predict)
